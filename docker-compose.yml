@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  backend:
+    build: ./backend
+    volumes:
+      - "./backend:/code"
+    ports:
+      - "3000:3000"
+
+  worker:
+    build: ./worker
+    volumes:
+      - "./worker:/code"
+    command: npm start
+    depends_on:
+      - backend
