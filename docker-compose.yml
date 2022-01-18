@@ -1,17 +1,22 @@
-version: "3.8"
+version: '3.8'
 
 services:
-  backend:
-    build: ./backend
-    volumes:
-      - "./backend:/code"
-    ports:
-      - "3000:3000"
+    backend:
+        build: ./backend
+        volumes:
+            - './backend:/code'
+            - 'file-pool:/uploads'
+        ports:
+            - '3000:3000'
+        env_file:
+            - backend/.env
 
-  worker:
-    build: ./worker
-    volumes:
-      - "./worker:/code"
-    command: npm start
-    depends_on:
-      - backend
+    worker:
+        build: ./worker
+        volumes:
+            - './worker:/code'
+            - 'file-pool:/uploads'
+        # command: npm start
+
+volumes:
+    file-pool:
