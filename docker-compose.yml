@@ -10,13 +10,35 @@ services:
             - '3000:3000'
         env_file:
             - backend/.env
+            - .env
+        networks:
+            - rabbit
 
     worker:
         build: ./worker
         volumes:
             - './worker:/code'
             - 'file-pool:/uploads'
-        # command: npm start
+        depends_on:
+            - rabbitmq
+        networks:
+            - rabbit
+        env_file:
+            - .env
+
+    rabbitmq:
+        image: rabbitmq:3.9-management-alpine
+        hostname: 'rabbit-hole'
+        ports:
+            - '5672:5672'
+            - '15672:15672'
+        env_file:
+            - .env
+        networks:
+            - rabbit
 
 volumes:
     file-pool:
+
+networks:
+    rabbit:
