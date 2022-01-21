@@ -4,3 +4,6 @@
 [submodule "worker"]
 	path = worker
 	url = https://github.com/dahyorr/file-hash-generator-worker.git
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/dahyorr/file-hash-generator-frontend.git
