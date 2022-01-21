@@ -9,10 +9,12 @@ services:
         ports:
             - '3000:3000'
         env_file:
-            - backend/.env
             - .env
         networks:
-            - rabbit
+            - message_pipeline
+        depends_on: 
+            - cache
+            - rabbitmq
 
     worker:
         build: ./worker
@@ -21,8 +23,9 @@ services:
             - 'file-pool:/uploads'
         depends_on:
             - rabbitmq
+            - cache
         networks:
-            - rabbit
+            - message_pipeline
         env_file:
             - .env
 
@@ -30,15 +33,24 @@ services:
         image: rabbitmq:3.9-management-alpine
         hostname: 'rabbit-hole'
         ports:
-            - '5672:5672'
             - '15672:15672'
         env_file:
             - .env
         networks:
-            - rabbit
+            - message_pipeline
+    
+    cache:
+        image: 'redis:6.2.6-alpine'
+        hostname: redis-cache
+        networks:
+            - message_pipeline
+        volumes:
+            - redis-data:/data
+
 
 volumes:
     file-pool:
+    redis-data:
 
 networks:
-    rabbit:
+    message_pipeline:
