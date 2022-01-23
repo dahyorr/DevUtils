@@ -1,2 +1,2 @@
-# file-hash-generator
-A web application to generate file hashes for uploaded files
+# DevUtils
+A web application to contain a set of developer utilities 
