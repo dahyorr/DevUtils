@@ -1,9 +1,9 @@
 [submodule "backend"]
 	path = backend
-	url = https://github.com/dahyorr/file-hash-generator-backend.git
+	url = https://github.com/dahyorr/DevUtils-backend.git
 [submodule "worker"]
 	path = worker
-	url = https://github.com/dahyorr/file-hash-generator-worker.git
+	url = https://github.com/dahyorr/DevUtils-worker.git
 [submodule "frontend"]
 	path = frontend
-	url = https://github.com/dahyorr/file-hash-generator-frontend.git
+	url = https://github.com/dahyorr/DevUtils-frontend.git
