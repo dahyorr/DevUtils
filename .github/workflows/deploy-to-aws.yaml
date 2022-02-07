@@ -1,0 +1,62 @@
+name: Deploy to aws
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: 'true'
+
+    - name: Create env file
+      run: |
+        cat << EOF > .env
+        RABBITMQ_DEFAULT_USER=${{ secrets.RABBITMQ_DEFAULT_USER }}
+        RABBITMQ_DEFAULT_PASS=${{ secrets.RABBITMQ_DEFAULT_PASS }}
+        RABBITMQ_HOST=${{ secrets.RABBITMQ_HOST }}
+        RABBITMQ_PORT=${{ secrets.RABBITMQ_PORT }}
+        REDIS_HOST=${{ secrets.REDIS_HOST }}
+        REDIS_PORT=${{ secrets.REDIS_PORT }}
+        BACKEND_PORT=${{ secrets.BACKEND_PORT }}
+        UPLOAD_DESTINATION=${{ secrets.UPLOAD_DESTINATION }}
+        FILE_DURATION=${{ secrets.FILE_DURATION }}
+        EOF
+
+    - name: Build the Docker Images
+      run: docker-compose -f docker-compose.prod.yml build
+
+    - name: Generate Deployment Package
+      run: zip -r deploy.zip *
+
+    - name: Get timestamp
+      uses: gerred/actions/current-time@master
+      id: current-time
+
+    - name: Run string replace
+      uses: frabert/replace-string-action@master
+      id: format-time
+      with:
+        pattern: '[:\.]+'
+        string: "${{ steps.current-time.outputs.time }}"
+        replace-with: '-'
+        flags: 'g'
+    
+    - name: Deploy to EB
+      uses: einaregilsson/beanstalk-deploy@v20
+      with:
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        application_name: DevUtils
+        environment_name: DevUtils-env
+        version_label: "DevUtils-${{ steps.format-time.outputs.replaced }}"
+        region: us-east-2
+        deployment_package: deploy.zip
