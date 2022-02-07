@@ -32,17 +32,14 @@ jobs:
         directory: .
         file_name: .env
 
-    - name: Create test file
-      run: |
-        cat << EOF > test.txt
-        testtesttest
-        EOF
-
     - name: Build the Docker Images
       run: docker-compose -f docker-compose.prod.yml build
 
-    - name: Generate Deployment Package
-      run: zip -r deploy.zip *
+    - name: Zip for deploy
+      uses: thedoctor0/zip-release@master
+      with:
+        filename: 'deploy.zip'
+        exclusions: '*.git* /*node_modules/* .editorconfig .env.template'
 
     - name: Get timestamp
       uses: gerred/actions/current-time@master
