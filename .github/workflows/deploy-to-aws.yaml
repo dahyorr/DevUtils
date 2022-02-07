@@ -18,18 +18,18 @@ jobs:
         submodules: 'true'
 
     - name: Create env file
-      run: |
-        cat << EOF > .env
-        RABBITMQ_DEFAULT_USER=${{ secrets.RABBITMQ_DEFAULT_USER }}
-        RABBITMQ_DEFAULT_PASS=${{ secrets.RABBITMQ_DEFAULT_PASS }}
-        RABBITMQ_HOST=${{ secrets.RABBITMQ_HOST }}
-        RABBITMQ_PORT=${{ secrets.RABBITMQ_PORT }}
-        REDIS_HOST=${{ secrets.REDIS_HOST }}
-        REDIS_PORT=${{ secrets.REDIS_PORT }}
-        BACKEND_PORT=${{ secrets.BACKEND_PORT }}
-        UPLOAD_DESTINATION=${{ secrets.UPLOAD_DESTINATION }}
-        FILE_DURATION=${{ secrets.FILE_DURATION }}
-        EOF
+      uses: SpicyPizza/create-envfile@v1
+      with: 
+        envkey_RABBITMQ_DEFAULT_USER: ${{ secrets.RABBITMQ_DEFAULT_USER }}
+        envkey_RABBITMQ_DEFAULT_PASS: ${{ secrets.RABBITMQ_DEFAULT_PASS }}
+        envkey_RABBITMQ_HOST: ${{ secrets.RABBITMQ_HOST }}
+        envkey_RABBITMQ_PORT: ${{ secrets.RABBITMQ_PORT }}
+        envkey_REDIS_HOST: ${{ secrets.REDIS_HOST }}
+        envkey_REDIS_PORT: ${{ secrets.REDIS_PORT }}
+        envkey_BACKEND_PORT: ${{ secrets.BACKEND_PORT }}
+        envkey_UPLOAD_DESTINATION: ${{ secrets.UPLOAD_DESTINATION }}
+        envkey_FILE_DURATION: ${{ secrets.FILE_DURATION }}
+        file_name: .env
 
     - name: Build the Docker Images
       run: docker-compose -f docker-compose.prod.yml build
