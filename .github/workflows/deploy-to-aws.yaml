@@ -32,6 +32,12 @@ jobs:
         directory: .
         file_name: .env
 
+    - name: Create test file
+      run: |
+        cat << EOF > test.txt
+        testtesttest
+        EOF
+
     - name: Build the Docker Images
       run: docker-compose -f docker-compose.prod.yml build
 
