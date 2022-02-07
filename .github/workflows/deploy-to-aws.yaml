@@ -29,6 +29,7 @@ jobs:
         envkey_BACKEND_PORT: ${{ secrets.BACKEND_PORT }}
         envkey_UPLOAD_DESTINATION: ${{ secrets.UPLOAD_DESTINATION }}
         envkey_FILE_DURATION: ${{ secrets.FILE_DURATION }}
+        directory: .
         file_name: .env
 
     - name: Build the Docker Images
