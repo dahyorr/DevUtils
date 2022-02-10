@@ -32,11 +32,11 @@ jobs:
         directory: .
         file_name: .env
 
+    # - name: Build the Docker Images # To be refactored for tests
+    #   run: docker-compose build
+
     - name: Swap docker-compose
       run: rm docker-compose.yml && mv ./docker-compose.prod.yml ./docker-compose.yml
-
-    - name: Build the Docker Images
-      run: docker-compose build
 
     - name: Zip for deploy
       uses: thedoctor0/zip-release@master
@@ -63,7 +63,7 @@ jobs:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         application_name: DevUtils
-        environment_name: DevUtils-env
+        environment_name: Devutils-env
         version_label: "DevUtils-${{ steps.format-time.outputs.replaced }}"
         region: us-east-2
         deployment_package: deploy.zip
