@@ -51,7 +51,6 @@ services:
         build: 
             context: ./file-server
             dockerfile: Dockerfile.dev
-            target: dev
         volumes:
             - './file-server:/code'
             - 'file-pool:/uploads'
