@@ -7,3 +7,6 @@
 [submodule "frontend"]
 	path = frontend
 	url = https://github.com/dahyorr/DevUtils-frontend.git
+[submodule "file-server"]
+	path = file-server
+	url = https://github.com/dahyorr/DevUtils-file-server.git
