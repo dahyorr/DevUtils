@@ -1,72 +1,68 @@
-name: Deploy to aws
+# name: Deploy to aws
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+# on:
+#   push:
+#     branches: [ main ]
+#   pull_request:
+#     branches: [ main ]
 
-jobs:
+# jobs:
+#   Deploy:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v2
+#       with:
+#         submodules: 'true'
+#     - name: Create env file
+#       uses: SpicyPizza/create-envfile@v1
+#       with: 
+#         envkey_RABBITMQ_DEFAULT_USER: ${{ secrets.RABBITMQ_DEFAULT_USER }}
+#         envkey_RABBITMQ_DEFAULT_PASS: ${{ secrets.RABBITMQ_DEFAULT_PASS }}
+#         envkey_RABBITMQ_HOST: ${{ secrets.RABBITMQ_HOST }}
+#         envkey_RABBITMQ_PORT: ${{ secrets.RABBITMQ_PORT }}
+#         envkey_RABBITMQ_PROTOCOOL: ${{ secrets.RABBITMQ_PROTOCOOL }}
+#         envkey_REDIS_HOST: ${{ secrets.REDIS_HOST }}
+#         envkey_REDIS_PORT: ${{ secrets.REDIS_PORT }}
+#         envkey_REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
+#         # envkey_BACKEND_PORT: ${{ secrets.BACKEND_PORT }}
+#         envkey_UPLOAD_DESTINATION: ${{ secrets.UPLOAD_DESTINATION }}
+#         envkey_FILE_DURATION: ${{ secrets.FILE_DURATION }}
+#         envkey_FILE_SERVER_API_KEY: ${{ secrets.FILE_SERVER_API_KEY }}
+#         directory: .
+#         file_name: .env
 
-  Deploy:
+#     # - name: Build the Docker Images # To be refactored for tests
+#     #   run: docker-compose build
 
-    runs-on: ubuntu-latest
+#     - name: Swap docker-compose
+#       run: rm docker-compose.yml && mv ./docker-compose.prod.yml ./docker-compose.yml
 
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        submodules: 'true'
+#     - name: Zip for deploy
+#       uses: thedoctor0/zip-release@master
+#       with:
+#         filename: 'deploy.zip'
+#         exclusions: '*.git* /*node_modules/* .editorconfig .env.template'
 
-    - name: Create env file
-      uses: SpicyPizza/create-envfile@v1
-      with: 
-        envkey_RABBITMQ_DEFAULT_USER: ${{ secrets.RABBITMQ_DEFAULT_USER }}
-        envkey_RABBITMQ_DEFAULT_PASS: ${{ secrets.RABBITMQ_DEFAULT_PASS }}
-        envkey_RABBITMQ_HOST: ${{ secrets.RABBITMQ_HOST }}
-        envkey_RABBITMQ_PORT: ${{ secrets.RABBITMQ_PORT }}
-        envkey_RABBITMQ_PROTOCOOL: ${{ secrets.RABBITMQ_PROTOCOOL }}
-        envkey_REDIS_HOST: ${{ secrets.REDIS_HOST }}
-        envkey_REDIS_PORT: ${{ secrets.REDIS_PORT }}
-        envkey_REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
-        # envkey_BACKEND_PORT: ${{ secrets.BACKEND_PORT }}
-        envkey_UPLOAD_DESTINATION: ${{ secrets.UPLOAD_DESTINATION }}
-        envkey_FILE_DURATION: ${{ secrets.FILE_DURATION }}
-        envkey_FILE_SERVER_API_KEY: ${{ secrets.FILE_SERVER_API_KEY }}
-        directory: .
-        file_name: .env
+#     - name: Get timestamp
+#       uses: gerred/actions/current-time@master
+#       id: current-time
 
-    # - name: Build the Docker Images # To be refactored for tests
-    #   run: docker-compose build
-
-    - name: Swap docker-compose
-      run: rm docker-compose.yml && mv ./docker-compose.prod.yml ./docker-compose.yml
-
-    - name: Zip for deploy
-      uses: thedoctor0/zip-release@master
-      with:
-        filename: 'deploy.zip'
-        exclusions: '*.git* /*node_modules/* .editorconfig .env.template'
-
-    - name: Get timestamp
-      uses: gerred/actions/current-time@master
-      id: current-time
-
-    - name: Run string replace
-      uses: frabert/replace-string-action@master
-      id: format-time
-      with:
-        pattern: '[:\.]+'
-        string: "${{ steps.current-time.outputs.time }}"
-        replace-with: '-'
-        flags: 'g'
+#     - name: Run string replace
+#       uses: frabert/replace-string-action@master
+#       id: format-time
+#       with:
+#         pattern: '[:\.]+'
+#         string: "${{ steps.current-time.outputs.time }}"
+#         replace-with: '-'
+#         flags: 'g'
     
-    - name: Deploy to EB
-      uses: einaregilsson/beanstalk-deploy@v20
-      with:
-        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        application_name: DevUtils
-        environment_name: Devutils-env
-        version_label: "DevUtils-${{ steps.format-time.outputs.replaced }}"
-        region: us-east-2
-        deployment_package: deploy.zip
+#     - name: Deploy to EB
+#       uses: einaregilsson/beanstalk-deploy@v20
+#       with:
+#         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#         application_name: DevUtils
+#         environment_name: Devutils-env
+#         version_label: "DevUtils-${{ steps.format-time.outputs.replaced }}"
+#         region: us-east-2
+#         deployment_package: deploy.zip
