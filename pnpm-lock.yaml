@@ -171,6 +171,21 @@ importers:
       '@tauri-apps/plugin-sql':
         specifier: ~2
         version: 2.4.0
+      '@types/chroma-js':
+        specifier: ^3.1.2
+        version: 3.1.2
+      '@types/js-yaml':
+        specifier: ^4.0.5
+        version: 4.0.9
+      '@types/node':
+        specifier: 26.1.0
+        version: 26.1.0
+      '@types/react':
+        specifier: ^19.2.17
+        version: 19.2.17
+      '@types/react-dom':
+        specifier: ^19.2.3
+        version: 19.2.3(@types/react@19.2.17)
       '@vercel/analytics':
         specifier: ^2.0.1
         version: 2.0.1(next@16.2.10(@babel/core@7.29.7)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(sass@1.101.0))(react@19.2.7)
@@ -234,6 +249,9 @@ importers:
       socket.io-client:
         specifier: ^4.7.1
         version: 4.8.3
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
       uuid:
         specifier: 14.0.1
         version: 14.0.1
@@ -244,27 +262,9 @@ importers:
       '@tauri-apps/cli':
         specifier: ^2.1.0
         version: 2.11.4
-      '@types/chroma-js':
-        specifier: ^3.1.2
-        version: 3.1.2
-      '@types/js-yaml':
-        specifier: ^4.0.5
-        version: 4.0.9
-      '@types/node':
-        specifier: 26.1.0
-        version: 26.1.0
-      '@types/react':
-        specifier: ^19.2.17
-        version: 19.2.17
-      '@types/react-dom':
-        specifier: ^19.2.3
-        version: 19.2.3(@types/react@19.2.17)
       eslint:
         specifier: 9.39.4
         version: 9.39.4
-      typescript:
-        specifier: 6.0.3
-        version: 6.0.3
 
   worker:
     devDependencies:
