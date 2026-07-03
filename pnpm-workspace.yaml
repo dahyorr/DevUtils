@@ -3,7 +3,9 @@ packages:
   - "backend"
   - "worker"
 
-autoInstallPeers: false
+overrides:
+  prisma: "npm:@types/node@*"
+  "@prisma/client": "npm:@types/node@*"
 
 allowBuilds:
   '@nestjs/core': true
