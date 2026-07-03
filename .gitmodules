@@ -1,9 +1,0 @@
-[submodule "backend"]
-	path = backend
-	url = https://github.com/dahyorr/DevUtils-backend.git
-[submodule "worker"]
-	path = worker
-	url = https://github.com/dahyorr/DevUtils-worker.git
-[submodule "frontend"]
-	path = frontend
-	url = https://github.com/dahyorr/DevUtils-frontend.git
