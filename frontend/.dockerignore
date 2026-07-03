@@ -1,0 +1,9 @@
+README.MD
+LICENSE
+.gitignore
+.dockerignore
+Dockerfile
+.idea
+.git
+**/node_modules
+**/npm-debug.log
