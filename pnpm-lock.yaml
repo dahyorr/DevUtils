@@ -183,6 +183,9 @@ importers:
       '@mui/material-nextjs':
         specifier: ^6.1.7
         version: 6.5.0(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@18.3.31)(react@18.3.1))(@types/react@18.3.31)(next@15.0.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.101.0))(react@18.3.1)
+      '@mui/system':
+        specifier: ^6.1.7
+        version: 6.5.0(@emotion/react@11.14.0(@types/react@18.3.31)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.31)(react@18.3.1))(@types/react@18.3.31)(react@18.3.1))(@types/react@18.3.31)(react@18.3.1)
       '@tauri-apps/plugin-dialog':
         specifier: ~2
         version: 2.7.1
