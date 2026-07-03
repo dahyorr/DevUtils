@@ -1,4 +1,4 @@
-import { ValidationPipe } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
@@ -23,5 +23,6 @@ async function bootstrap() {
   app.setGlobalPrefix('api')
   const PORT = process.env.PORT || process.env.BACKEND_PORT || 5000
   await app.listen(PORT);
+  Logger.log(`Application is running on: ${await app.getUrl()}`, 'Bootstrap');
 }
 bootstrap();
