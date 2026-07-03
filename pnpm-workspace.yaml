@@ -3,15 +3,14 @@ packages:
   - "backend"
   - "worker"
 
+autoInstallPeers: false
+
 allowBuilds:
   '@nestjs/core': true
   '@parcel/watcher': true
-  '@prisma/client': false
-  '@prisma/engines': false
   '@scarf/scarf': false
   es5-ext: true
   esbuild: true
-  prisma: false
   sharp: true
   unrs-resolver: true
 
@@ -23,8 +22,3 @@ onlyBuiltDependencies:
   - "sharp"
   - "unrs-resolver"
   - "@tauri-apps/cli"
-
-peerDependencyRules:
-  ignoreMissing:
-    - "@prisma/client"
-    - "prisma"
