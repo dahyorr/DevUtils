@@ -1,6 +1,6 @@
 "use client"
 import { Box, InputAdornment, TextField, Typography, useTheme } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import PageHeader from '../PageHeader'
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
@@ -28,54 +28,47 @@ const defaultValue: ParsedURL = {
 
 const ReactJsonView = dynamic(() => import('@microlink/react-json-view'), { ssr: false })
 
+const validateUrl = (url: string) => {
+  try {
+    const urlObj = new URL(url)
+    return urlObj
+  } catch (error) {
+    return false
+  }
+}
+
+const parseUrl = (url: string): { urlValid: boolean; parsedURL: ParsedURL } => {
+  const urlObj = validateUrl(url)
+  if (!urlObj) {
+    return { urlValid: false, parsedURL: defaultValue }
+  }
+  return {
+    urlValid: true,
+    parsedURL: {
+      protocol: urlObj.protocol,
+      host: urlObj.host,
+      port: urlObj.port,
+      query: urlObj.search,
+      path: urlObj.pathname,
+      queryObject: Object.fromEntries(urlObj.searchParams)
+    }
+  }
+}
+
+const initialUrl = "https://devutils.dayo.dev/parsers/url-parser?query=hello-world"
+
 const UrlParser = ({ }: Props) => {
-  const [urlValid, setUrlValid] = useState<boolean>(false)
-  const [url, setUrl] = useState<string>("https://devutils.dayo.dev/parsers/url-parser?query=hello-world")
-  const [parsedURL, setParsedURL] = useState<ParsedURL>(defaultValue)
+  const [url, setUrl] = useState<string>(initialUrl)
+  const [{ urlValid, parsedURL }, setParsed] = useState<{ urlValid: boolean; parsedURL: ParsedURL }>(() => parseUrl(initialUrl))
 
   const theme = useTheme()
   const themeMode = theme.palette.mode
 
   const onUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUrl(e.target.value)
+    const newUrl = e.target.value
+    setUrl(newUrl)
+    setParsed(parseUrl(newUrl))
   }
-
-  const validateUrl = (url: string) => {
-    try {
-      const urlObj = new URL(url)
-      return urlObj
-    } catch (error) {
-      return false
-    }
-  }
-
-  useEffect(() => {
-    // check if url is valid
-    const urlObj = validateUrl(url)
-    if (urlObj) {
-      setUrlValid(true)
-      // split url into parts
-      const protocol = urlObj.protocol
-      const host = urlObj.host
-      const port = urlObj.port
-      const query = urlObj.search
-      const path = urlObj.pathname
-      const queryObject = Object.fromEntries(urlObj.searchParams)
-      setParsedURL({
-        protocol,
-        host,
-        port,
-        query,
-        path,
-        queryObject
-      })
-    }
-
-    else {
-      setUrlValid(false)
-      setParsedURL(defaultValue)
-    }
-  }, [url])
 
   return (
     <Box >

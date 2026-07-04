@@ -1,6 +1,6 @@
 "use client"
 import { Box, Input, Select, Typography, MenuItem, InputAdornment } from '@mui/material'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import PageHeader from '../PageHeader'
 
 type Props = {}
@@ -50,20 +50,14 @@ function FileSizeConverter({ }: Props) {
     return value / metrics[metricKey].value
   }
 
-  useEffect(() => {
-    setToValue(convertByteTo(toMetric, convertFromToByte(fromMetric, fromValue)))
-  }, [fromValue, fromMetric])
-
-  useEffect(() => {
-    setFromValue(convertByteTo(fromMetric, convertFromToByte(toMetric, toValue)))
-  }, [toMetric, toValue])
-
   const onMetricChange = (pos: 'to' | 'from') => (event: any) => {
     const value = event.target.value
     if (pos === 'to') {
       setToMetric(value)
+      setFromValue(convertByteTo(fromMetric, convertFromToByte(value, toValue)))
     } else {
       setFromMetric(value)
+      setToValue(convertByteTo(toMetric, convertFromToByte(value, fromValue)))
     }
   }
 
@@ -71,8 +65,10 @@ function FileSizeConverter({ }: Props) {
     const value = event.target.value
     if (pos === 'to') {
       setToValue(value)
+      setFromValue(convertByteTo(fromMetric, convertFromToByte(toMetric, value)))
     } else {
       setFromValue(value)
+      setToValue(convertByteTo(toMetric, convertFromToByte(fromMetric, value)))
     }
   }
 

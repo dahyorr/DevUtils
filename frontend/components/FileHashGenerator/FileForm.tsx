@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Stack from '@mui/material/Stack';
 import Fab from '@mui/material/Fab';
@@ -46,12 +46,6 @@ const FileForm = () => {
         })
     }
 
-    useEffect(() => {
-        if (errors.files) {
-            showErrorSnackbar(errors.files)
-        }
-    }, [errors])
-
     const handleHashChange = (event: SelectChangeEvent<typeof selectedHashType>) => {
         const { value } = event.target
         setSelectedHashType(
@@ -78,6 +72,9 @@ const FileForm = () => {
             validationErrors.files = "You must upload a file"
         }
         setErrors(validationErrors)
+        if (validationErrors.files) {
+            showErrorSnackbar(validationErrors.files)
+        }
         return Object.keys(validationErrors).length < 1
     }
 

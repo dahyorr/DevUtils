@@ -47,6 +47,9 @@ const HashPreview = () => {
   }, [fileId, showLoader, hideLoader])
 
   useEffect(() => {
+    // Genuine data fetch keyed off the fileId route param, not derived
+    // state that could be computed during render.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     getResult()
   }, [getResult])
 

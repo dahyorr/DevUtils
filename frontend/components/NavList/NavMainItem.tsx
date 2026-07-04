@@ -10,18 +10,20 @@ import Collapse from '@mui/material/Collapse';
 import NextLink from 'next/link'
 import { NavMainItemProps } from '@/types';
 import NavChildItem from './NavChildItem';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 const NavMainItem: React.FC<NavMainItemProps> = ({ label, dropdown, icon, path, links, disabled }) => {
   const pathname = usePathname()
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(() => Boolean(dropdown && path && pathname?.includes(path)))
+  const [prevPathname, setPrevPathname] = useState(pathname)
 
-  useEffect(() => {
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname)
     if (dropdown && path && pathname?.includes(path)) {
       setOpen(true)
     }
-  }, [dropdown, label, path, pathname])
+  }
 
   const closeSidebar = () => {
     setOpen(false)

@@ -104,7 +104,7 @@ const NumberBaseConverter = (props: Props) => {
     if (error) {
       enqueueSnackbar(error, { variant: 'error' })
     }
-  }, [error])
+  }, [error, enqueueSnackbar])
 
   const onCopy = (value: string) => {
     if (!value) return

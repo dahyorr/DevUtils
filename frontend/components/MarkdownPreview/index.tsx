@@ -40,6 +40,9 @@ const MarkdownPreview = ({ }: Props) => {
   }
 
   useEffect(() => {
+    // Genuine async work (markdown -> HTML via a dynamically imported
+    // library), not derived state that could be computed during render.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     convertMarkdownToHtml(editorContent)
   }, [editorContent, editorErrors])
   console.log(theme.mixins.toolbar.minHeight)
