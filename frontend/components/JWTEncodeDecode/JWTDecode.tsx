@@ -63,8 +63,9 @@ const JWTDecode = ({ allowedAlg }: Props) => {
         minRows={4}
         fullWidth
       />
-
-      <Box display='flex'>
+      <Box sx={{
+        display: 'flex'
+      }}>
         <TextField
           id="header"
           label="Header"
@@ -86,14 +87,11 @@ const JWTDecode = ({ allowedAlg }: Props) => {
           fullWidth
         />
       </Box>
-
       <JWTSettings
         settings={settings}
         mode='decode'
         onUpdate={(settings) => setSettings(settings as JWTDecodeSettings)}
       />
-
-
       {settings.verifySignature && (<TextField
         id="signature"
         label="Signature"
@@ -104,15 +102,13 @@ const JWTDecode = ({ allowedAlg }: Props) => {
         minRows={4}
         fullWidth
       />)}
-
       {settings.verifySignature && signatureValid !== undefined && (
         <Typography color={signatureValid ? 'success' : 'error'}>
           {signatureValid ? 'Signature is valid' : 'Signature is invalid'}
         </Typography>
       )}
-
     </>
-  )
+  );
 }
 
 export default JWTDecode

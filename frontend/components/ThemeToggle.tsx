@@ -63,7 +63,7 @@ const ThemeToggle: React.FC = () => {
                     <ThemeSwitch
                         onChange={toggleThemeMode}
                         checked={themeMode === 'dark'}
-                        inputProps={{ 'aria-label': 'theme-switcher' }}
+                        slotProps={{ input: { 'aria-label': 'theme-switcher' } }}
                     />
                 }
                 label=""

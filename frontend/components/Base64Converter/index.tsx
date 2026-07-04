@@ -43,12 +43,12 @@ const Base64Converter = () => {
       alignItems: 'center',
       justifyContent: 'center'
     }}>
-      <Stack 
-        direction="row" 
-        sx={{}} 
+      <Stack
+        direction="row"
         spacing={4}
-        alignItems="center"
-      >
+        sx={{
+          alignItems: "center"
+        }}>
         <TextField
           sx={{
             width: 300, 
@@ -61,7 +61,9 @@ const Base64Converter = () => {
           onChange={handleChange}
           placeholder="Input value"
         />
-        <Stack alignItems="center" spacing={2}>
+        <Stack spacing={2} sx={{
+          alignItems: "center"
+        }}>
           <Button 
             variant={"contained"}
             onClick={() => onConvert('encode')}
@@ -86,7 +88,7 @@ const Base64Converter = () => {
         />  
       </Stack>
     </Box>
-  )
+  );
 };
 
 export default Base64Converter;

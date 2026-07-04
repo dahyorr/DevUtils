@@ -75,8 +75,14 @@ const UrlParser = ({ }: Props) => {
       <PageHeader>
         <Typography variant="h4" >URL Parser</Typography>
       </PageHeader>
-
-      <Box display="flex" gap="2rem" flexDirection={'column'} alignItems={'center'} justifyContent={'center'}>
+      <Box
+        sx={{
+          display: "flex",
+          gap: "2rem",
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
         <TextField
           label="URL"
           variant="outlined"
@@ -157,7 +163,7 @@ const UrlParser = ({ }: Props) => {
         </Box>
       </Box>
     </Box>
-  )
+  );
 }
 
 export default UrlParser

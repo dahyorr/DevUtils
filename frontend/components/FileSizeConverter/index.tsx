@@ -73,14 +73,27 @@ function FileSizeConverter({ }: Props) {
   }
 
   return (
-    <Box width={"100%"}>
+    <Box sx={{
+      width: "100%"
+    }}>
       <PageHeader>
         <Typography variant="h4" >File Size Converter</Typography>
       </PageHeader>
-
-
-      <Box display="flex" gap="2rem" flexDirection={'column'} alignItems={'center'} justifyContent={'center'}>
-        <Box display='flex' alignItems={'center'} gap="1rem" justifyContent={'center'}>
+      <Box
+        sx={{
+          display: "flex",
+          gap: "2rem",
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: "1rem",
+            justifyContent: 'center'
+          }}>
           <Typography>Convert from </Typography>
           <Select
             native
@@ -140,9 +153,8 @@ function FileSizeConverter({ }: Props) {
           />
         </Box>
       </Box>
-
     </Box>
-  )
+  );
 }
 
 export default FileSizeConverter

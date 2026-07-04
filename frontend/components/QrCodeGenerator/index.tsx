@@ -64,8 +64,14 @@ const QrCodeGenerator = () => {
       <PageHeader >
         <Typography variant="h4" >QR Code Generator</Typography>
       </PageHeader>
-
-      <Stack spacing={'2rem'} display={'flex'} maxWidth={'sm'} mx={'auto'} alignItems={'center'}>
+      <Stack
+        spacing={'2rem'}
+        sx={{
+          display: 'flex',
+          maxWidth: 'sm',
+          mx: 'auto',
+          alignItems: 'center'
+        }}>
         <OutlinedInput
           id='text'
           type={'text'}
@@ -93,10 +99,11 @@ const QrCodeGenerator = () => {
         // }}
         />
 
-        <Box 
-          display={'flex'}
-          gap={'1rem'}
-        >
+        <Box
+          sx={{
+            display: 'flex',
+            gap: '1rem'
+          }}>
           <Button
             variant="contained"
             onClick={onDownload}
@@ -112,7 +119,7 @@ const QrCodeGenerator = () => {
         </Box>
       </Stack>
     </Box>
-  )
+  );
 }
 
 export default QrCodeGenerator

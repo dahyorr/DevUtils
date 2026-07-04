@@ -16,10 +16,10 @@ type Props = {}
 // ]
 const colorTitleProps: TypographyProps = {
   variant: "h6",
-  fontSize: "0.75rem"
+  sx: { fontSize: "0.75rem" }
 }
 const colorValueProps: TypographyProps = {
-  fontSize: "0.85rem"
+  sx: { fontSize: "0.85rem" }
 }
 
 const ColorConverter = (props: Props) => {
@@ -59,8 +59,13 @@ const ColorConverter = (props: Props) => {
       <PageHeader>
         <Typography variant="h4" >Color Converter</Typography>
       </PageHeader>
-
-      <Stack alignItems={'center'} maxWidth={'md'} mx={'auto'} spacing="2rem">
+      <Stack
+        spacing="2rem"
+        sx={{
+          alignItems: 'center',
+          maxWidth: 'md',
+          mx: 'auto'
+        }}>
         <TextField
           id="color"
           label="Color"
@@ -85,16 +90,24 @@ const ColorConverter = (props: Props) => {
           borderRadius: "0.5rem",
           backgroundColor: 'transparent'
         }} >
-          <Stack direction={'row'} height={'9rem'} maxHeight={'9rem'} width={"100%"} overflow={'hidden'}>
+          <Stack
+            direction={'row'}
+            sx={{
+              height: '9rem',
+              maxHeight: '9rem',
+              width: "100%",
+              overflow: 'hidden'
+            }}>
             <Box
               id="color-preview"
-              minWidth={"9rem"}
-              width={'9rem'}
-              height={"100%"}
-              bgcolor={colorObj.hex}
-              position={'relative'}
-              zIndex={'auto'}
               sx={{
+                minWidth: "9rem",
+                width: '9rem',
+                height: "100%",
+                bgcolor: colorObj.hex,
+                position: 'relative',
+                zIndex: 'auto',
+
                 "&::before": {
                   content: '""',
                   height: "100%",
@@ -109,10 +122,18 @@ const ColorConverter = (props: Props) => {
                 }
               }} />
 
-            <Stack px={'0.5rem'} py="0.25rem" spacing={0} overflow={'auto'}>
+            <Stack
+              spacing={0}
+              sx={{
+                px: '0.5rem',
+                py: "0.25rem",
+                overflow: 'auto'
+              }}>
               <Box>
                 <Typography {...colorTitleProps}>HEX</Typography>
-                <Stack direction={'row'} alignItems={'center'} spacing="1rem">
+                <Stack direction={'row'} spacing="1rem" sx={{
+                  alignItems: 'center'
+                }}>
                   <Typography {...colorValueProps}> {colorObj?.hex}</Typography>
                   <IconButton size="small" onClick={() => onCopyColor(colorObj?.hex)}>
                     <ContentCopyIcon fontSize='inherit' />
@@ -121,7 +142,9 @@ const ColorConverter = (props: Props) => {
               </Box>
               <Box>
                 <Typography {...colorTitleProps}>HSL</Typography>
-                <Stack direction={'row'} alignItems={'center'} spacing="1rem">
+                <Stack direction={'row'} spacing="1rem" sx={{
+                  alignItems: 'center'
+                }}>
                   <Typography {...colorValueProps}> {colorObj?.hsl}</Typography>
                   <IconButton size="small" onClick={() => onCopyColor(colorObj?.hsl)}>
                     <ContentCopyIcon fontSize='inherit' />
@@ -131,7 +154,9 @@ const ColorConverter = (props: Props) => {
 
               <Box>
                 <Typography {...colorTitleProps}>RGBA</Typography>
-                <Stack direction={'row'} alignItems={'center'} spacing="1rem">
+                <Stack direction={'row'} spacing="1rem" sx={{
+                  alignItems: 'center'
+                }}>
                   <Typography {...colorValueProps}>{colorObj?.rgba}</Typography>
                   <IconButton size="small" onClick={() => onCopyColor(colorObj?.rgba)}>
                     <ContentCopyIcon fontSize='inherit' />
@@ -145,7 +170,7 @@ const ColorConverter = (props: Props) => {
         </Paper>)}
       </Stack>
     </>
-  )
+  );
 }
 
 export default ColorConverter

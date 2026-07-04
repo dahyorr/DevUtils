@@ -62,7 +62,9 @@ const JWTEncode = ({allowedAlg}: Props) => {
 
   const allowGenerate = settings.algorithm && settings.signingKey && settings.payload
   return (
-    <Stack spacing={2} alignItems={'center'}>
+    <Stack spacing={2} sx={{
+      alignItems: 'center'
+    }}>
       <TextField
         id="algorithm"
         label="Algorithm"
@@ -73,8 +75,9 @@ const JWTEncode = ({allowedAlg}: Props) => {
       >
         {allowedAlg.map(a => (<MenuItem key={a} value={a}>{a}</MenuItem>))}
       </TextField>
-
-      <Stack direction='row' spacing={0} width={'100%'}>
+      <Stack direction='row' spacing={0} sx={{
+        width: '100%'
+      }}>
         <TextField
           id="Signing-Key"
           label="Signing Key"
@@ -96,7 +99,6 @@ const JWTEncode = ({allowedAlg}: Props) => {
           minRows={5}
         />
       </Stack>
-
       <Button
         variant={'contained'}
         onClick={onGenerate}
@@ -104,7 +106,6 @@ const JWTEncode = ({allowedAlg}: Props) => {
       >
         Generate
       </Button>
-
       <TextField
         id="jwt"
         label="Token"
@@ -124,9 +125,8 @@ const JWTEncode = ({allowedAlg}: Props) => {
           },
         }}
       />
-
     </Stack>
-  )
+  );
 }
 
 export default JWTEncode

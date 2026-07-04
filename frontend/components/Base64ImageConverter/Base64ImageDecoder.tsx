@@ -81,7 +81,9 @@ const Base64ImageDecoder = ({ }: Props) => {
   // }, [files])
 
   return (
-    <Stack alignItems={'center'} spacing={2}>
+    <Stack spacing={2} sx={{
+      alignItems: 'center'
+    }}>
       <TextField
         label="Encoded Image"
         multiline
@@ -92,8 +94,11 @@ const Base64ImageDecoder = ({ }: Props) => {
         onChange={(e) => setEnecodedImage(e.target.value)}
 
       />
-
-      <Box display={'flex'} gap={2}>
+      <Box
+        sx={{
+          display: 'flex',
+          gap: 2
+        }}>
         <Button
           variant="contained"
           color="primary"
@@ -102,7 +107,11 @@ const Base64ImageDecoder = ({ }: Props) => {
           Decode
         </Button>
 
-        <Box display={"flex"} gap={2}>
+        <Box
+          sx={{
+            display: "flex",
+            gap: 2
+          }}>
           {/* <Button
             variant="outlined"
             color="primary"
@@ -122,12 +131,12 @@ const Base64ImageDecoder = ({ }: Props) => {
         </Box>
 
       </Box>
-
-      <Box id="preview" display={blob ? 'block' : 'none'}>
+      <Box id="preview" sx={{
+        display: blob ? 'block' : 'none'
+      }}>
         <img ref={previewRef} alt="preview" />
       </Box>
-
     </Stack>
-  )
+  );
 }
 export default Base64ImageDecoder

@@ -117,8 +117,9 @@ const NumberBaseConverter = (props: Props) => {
       <PageHeader>
         <Typography variant="h4" >Number Base Converter</Typography>
       </PageHeader>
-
-      <Stack spacing={2} alignItems={'center'}>
+      <Stack spacing={2} sx={{
+        alignItems: 'center'
+      }}>
         <TextField
           id="hexadecimal"
           name="hexadecimal"
@@ -217,7 +218,7 @@ const NumberBaseConverter = (props: Props) => {
         />
       </Stack>
     </>
-  )
+  );
 }
 
 export default NumberBaseConverter

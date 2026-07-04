@@ -36,7 +36,6 @@ const TextEscapeUnescape = () => {
       <PageHeader>
         <Typography variant="h4">Text Escape/Unescape</Typography>
       </PageHeader>
-
       <Box sx={{
         // height: '100%',
         display: 'flex',
@@ -45,10 +44,10 @@ const TextEscapeUnescape = () => {
       }}>
         <Stack
           direction="row"
-          sx={{}}
           spacing={4}
-          alignItems="center"
-        >
+          sx={{
+            alignItems: "center"
+          }}>
           <TextField
             sx={{
               width: 300,
@@ -61,7 +60,9 @@ const TextEscapeUnescape = () => {
             onChange={handleChange}
             placeholder="Input value"
           />
-          <Stack alignItems="center" spacing={2}>
+          <Stack spacing={2} sx={{
+            alignItems: "center"
+          }}>
             <Button
               variant={"contained"}
               onClick={() => onConvert('escape')}
@@ -87,7 +88,7 @@ const TextEscapeUnescape = () => {
         </Stack>
       </Box>
     </>
-  )
+  );
 };
 
 export default TextEscapeUnescape;

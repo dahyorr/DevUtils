@@ -58,9 +58,7 @@ export const themeFactory = (mode: ThemeMode): ThemeOptions => ({
       secondary: {
         main: '#1E212A',
       },
-      ...mode === 'light'
-        ?lightPaletteOverrides
-        :darkPaletteOverrides
+      ...(mode === 'light' ? lightPaletteOverrides : darkPaletteOverrides)
       },
       typography: {
         fontFamily: 'Roboto, Inter, Arial',

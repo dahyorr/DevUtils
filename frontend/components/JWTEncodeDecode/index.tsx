@@ -30,7 +30,11 @@ const JWTEncodeDecode = () => {
   return (
     <Box>
       <PageHeader>
-        <Box display="flex" justifyContent={'space-between'}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: 'space-between'
+          }}>
           <Typography variant="h4" >JWT Encode/Decode</Typography>
 
           <Box>
@@ -41,12 +45,9 @@ const JWTEncodeDecode = () => {
           </Box>
         </Box>
       </PageHeader>
-
       {mode === "encode" ? (<JWTEncode allowedAlg={allowedAlg} />) : (<JWTDecode allowedAlg={allowedAlg}/>)}
-
     </Box>
-
-  )
+  );
 }
 
 export default JWTEncodeDecode

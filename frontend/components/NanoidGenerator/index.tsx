@@ -31,8 +31,14 @@ const NanoidGenerator = () => {
       <PageHeader>
         <Typography variant="h4" >NanoID Generator</Typography>
       </PageHeader>
-
-      <Stack alignItems={'center'} spacing={'1rem'} display={'flex'} maxWidth={'sm'} mx={'auto'}>
+      <Stack
+        spacing={'1rem'}
+        sx={{
+          alignItems: 'center',
+          display: 'flex',
+          maxWidth: 'sm',
+          mx: 'auto'
+        }}>
         {/* <Box display='flex' alignItems={'center'} gap="1rem">
         <Typography>Generate NanoID</Typography>
       </Box> */}
@@ -93,7 +99,7 @@ const NanoidGenerator = () => {
 
       </Stack>
     </Box>
-  )
+  );
 }
 
 export default NanoidGenerator

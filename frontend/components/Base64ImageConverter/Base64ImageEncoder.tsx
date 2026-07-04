@@ -40,7 +40,9 @@ const Base64ImageEncoder = ({ }: Props) => {
   // }, [files])
 
   return (
-    <Stack alignItems={'center'} spacing={2}>
+    <Stack spacing={2} sx={{
+      alignItems: 'center'
+    }}>
       <FilePicker
         onChange={onSelectFile}
         selectedFiles={files}
@@ -63,7 +65,6 @@ const Base64ImageEncoder = ({ }: Props) => {
           onClick={onEncode}
         >Encode</Button>
       </Box>
-
       <TextField
         label="Encoded Image"
         multiline
@@ -89,8 +90,7 @@ const Base64ImageEncoder = ({ }: Props) => {
         }}
 
       />
-
     </Stack>
-  )
+  );
 }
 export default Base64ImageEncoder

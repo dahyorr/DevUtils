@@ -16,7 +16,12 @@ const Base64ImageConverter = () => {
   return (
     <>
       <PageHeader>
-        <Box display="flex" justifyContent={'space-between'} alignItems={'center'}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: 'space-between',
+            alignItems: 'center'
+          }}>
 
           <Typography variant="h4">Base64 Image Encoder/Decoder</Typography>
           <Tabs value={mode} onChange={onModeChange} aria-label="basic tabs example">
@@ -25,11 +30,8 @@ const Base64ImageConverter = () => {
           </Tabs>
         </Box>
       </PageHeader>
-
       {mode === "decode" ? (<Base64ImageDecoder />) : (<Base64ImageEncoder/>)}
-
-
     </>
-  )
+  );
 }
 export default Base64ImageConverter;

@@ -73,8 +73,9 @@ const PasswordGenerator = (props: Props) => {
       <PageHeader>
         <Typography variant="h4" >Password Generator</Typography>
       </PageHeader>
-
-      <Stack spacing={4} alignItems={'center'}>
+      <Stack spacing={4} sx={{
+        alignItems: 'center'
+      }}>
 
         <Tabs value={settings.type} onChange={onTypeChange} aria-label="basic tabs example">
           <Tab label="Random" defaultChecked value="random" />
@@ -118,7 +119,7 @@ const PasswordGenerator = (props: Props) => {
         >Generate Password</Button>
       </Stack>
     </>
-  )
+  );
 }
 
 export default PasswordGenerator

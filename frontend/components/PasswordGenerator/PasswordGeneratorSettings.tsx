@@ -42,7 +42,9 @@ const PasswordGeneratorSettings = (props: Props) => {
 
   return (
     <Stack>
-      <Stack direction="row" spacing={2} alignItems="center">
+      <Stack direction="row" spacing={2} sx={{
+        alignItems: "center"
+      }}>
         <Slider
           value={settings.length}
           onChange={handleLengthChange}
@@ -52,12 +54,14 @@ const PasswordGeneratorSettings = (props: Props) => {
         <TextField
           value={settings.length}
           onChange={handleLengthInputChange}
-          inputProps={{
-            step: 1,
-            min: 1,
-            max: 32,
-            type: 'number',
-            'aria-labelledby': 'length-slider',
+          slotProps={{
+            htmlInput: {
+              step: 1,
+              min: 1,
+              max: 32,
+              type: 'number',
+              'aria-labelledby': 'length-slider',
+            },
           }}
           sx={{
             minWidth: "4.25rem",
@@ -107,8 +111,7 @@ const PasswordGeneratorSettings = (props: Props) => {
         }
         label="Include Symbols"
       />
-
     </Stack>
-  )
+  );
 }
 export default PasswordGeneratorSettings

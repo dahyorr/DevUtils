@@ -43,9 +43,20 @@ const UuidGenerator = () => {
       <PageHeader>
         <Typography variant="h4" >UUID Generator</Typography>
       </PageHeader>
-
-      <Stack alignItems={'center'} spacing={'1rem'} display={'flex'} maxWidth={'sm'} mx={'auto'}>
-        <Box display='flex' alignItems={'center'} gap="1rem">
+      <Stack
+        spacing={'1rem'}
+        sx={{
+          alignItems: 'center',
+          display: 'flex',
+          maxWidth: 'sm',
+          mx: 'auto'
+        }}>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: "1rem"
+          }}>
           <Typography>Generate UUID</Typography>
           <Select value={version} onChange={handleVersionChange} size='small'>
             <MenuItem value="v1">Version 1</MenuItem>
@@ -77,7 +88,7 @@ const UuidGenerator = () => {
 
       </Stack>
     </Box>
-  )
+  );
 }
 
 export default UuidGenerator

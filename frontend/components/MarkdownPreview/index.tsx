@@ -78,11 +78,13 @@ const MarkdownPreview = ({ }: Props) => {
         >
           <Box
             dangerouslySetInnerHTML={{ __html: htmlContent }}
-            maxWidth={'100%'}
+            sx={{
+              maxWidth: '100%'
+            }}
           />
         </Box>
       </Box>
     </Box>
-  )
+  );
 }
 export default MarkdownPreview
