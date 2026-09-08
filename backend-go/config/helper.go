@@ -1,11 +1,13 @@
 package config
 
-import "os"
+import (
+	"os"
+)
 
-func required(m []string, keyword string) string {
+func requiredEnvVariable(errSlice *[]string, keyword string) string {
 	v := os.Getenv(keyword)
 	if v == "" {
-		m = append(m, keyword)
+		*errSlice = append(*errSlice, keyword)
 	}
 	return v
 }

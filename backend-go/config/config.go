@@ -23,26 +23,10 @@ func Load() (Config, error) {
 		port = "5000"
 	}
 	c.Port = port
-	if db, v := os.LookupEnv("DATABASE_URL"); !v {
-		missing = append(missing, "DATABASE_URL")
-	} else {
-		c.DatabaseURL = db
-	}
-	if sb, v := os.LookupEnv("S3_UPLOAD_BUCKET"); !v {
-		missing = append(missing, "S3_UPLOAD_BUCKET")
-	} else {
-		c.S3Bucket = sb
-	}
-	if sr, v := os.LookupEnv("S3_REGION"); !v {
-		missing = append(missing, "S3_REGION")
-	} else {
-		c.S3Region = sr
-	}
-	if w, v := os.LookupEnv("WORKER_URL"); !v {
-		missing = append(missing, "WORKER_URL")
-	} else {
-		c.WorkerURL = w
-	}
+	c.DatabaseURL = requiredEnvVariable(&missing, "DATABASE_URL")
+	c.S3Bucket = requiredEnvVariable(&missing, "S3_UPLOAD_BUCKET")
+	c.S3Region = requiredEnvVariable(&missing, "S3_REGION")
+	c.WorkerURL = requiredEnvVariable(&missing, "WORKER_URL")
 
 	if len(missing) > 0 {
 		err := fmt.Errorf("missing required env vars: %s", strings.Join(missing, ", "))
