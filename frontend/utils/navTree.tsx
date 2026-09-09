@@ -122,6 +122,11 @@ export const navTree: NavMainItemProps[] = [
         path: '/parsers/markdown-preview',
         disabled: false
     },
+    {
+        label: 'Hash Identifier',
+        path: '/parsers/hash-identifier',
+        disabled: false
+    },
     ]
 },
 {
